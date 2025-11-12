@@ -5,6 +5,8 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "Camera/CameraComponent.h"
+#include "MyUserWidget.h"
+#include "Interactable.h"
 #include "PlayerCharacter.generated.h"
 
 UCLASS()
@@ -19,7 +21,19 @@ public:
 	UCameraComponent* camera;
 	UPROPERTY()
 	UCharacterMovementComponent* movementComponent;
+	UPROPERTY(EditAnywhere)
+	UMyUserWidget* myWidget;
+	UPROPERTY()
+	TSubclassOf<UMyUserWidget> widgetRef;
+	UPROPERTY()
+	bool shouldRaycast;
+	UPROPERTY()
+	float interactRange = 200;
+	UPROPERTY()
+	UClass* interactableRef;
 
+	UFUNCTION()
+	void Raycast();
 	UFUNCTION()
 	void Forward(float input);
 	UFUNCTION()

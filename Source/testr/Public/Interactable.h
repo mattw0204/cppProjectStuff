@@ -4,16 +4,18 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "DamagableActor.generated.h"
+#include "Interactable.generated.h"
 
 UCLASS()
-class TESTR_API ADamagableActor : public AActor
+class TESTR_API AInteractable : public AActor
 {
 	GENERATED_BODY()
 	
 public:	
 	// Sets default values for this actor's properties
-	ADamagableActor();
+	AInteractable();
+	UPROPERTY(VisibleAnywhere)
+	UStaticMeshComponent* mesh;
 
 protected:
 	// Called when the game starts or when spawned
