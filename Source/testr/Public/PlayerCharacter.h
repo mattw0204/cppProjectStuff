@@ -31,7 +31,8 @@ public:
 	float interactRange = 200;
 	UPROPERTY()
 	UClass* interactableRef;
-
+	UPROPERTY()
+	AInteractable* interactable;
 	UFUNCTION()
 	void Raycast();
 	UFUNCTION()
@@ -42,6 +43,8 @@ public:
 	void LookUp(float input);
 	UFUNCTION()
 	void LookRight(float input);
+	UFUNCTION()
+	void Interact();
 
 protected:
 	// Called when the game starts or when spawned

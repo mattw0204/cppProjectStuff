@@ -45,6 +45,7 @@ void APlayerCharacter::Tick(float DeltaTime)
 	Raycast();
 }
 void APlayerCharacter::Raycast() {
+	interactable = nullptr;
 	if (shouldRaycast) {
 		FVector start = camera->GetComponentLocation();
 		FVector forward = camera->GetForwardVector();
@@ -59,10 +60,20 @@ void APlayerCharacter::Raycast() {
 		}
 		if (outHit.GetActor()->IsA(interactableRef))
 		{
-			UE_LOG(LogTemp, Warning, TEXT("Activated!"));
+			interactable = (AInteractable*)outHit.GetActor();
 		}
 	}
 	shouldRaycast = false;
+}
+
+void APlayerCharacter::Interact()
+{
+	if (interactable == nullptr)
+	{
+		return;
+	}
+	UE_LOG(LogTemp, Warning, TEXT("Interacting"));
+	interactable->Destroy();
 }
 
 // Called to bind functionality to input
@@ -77,6 +88,8 @@ void APlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 	PlayerInputComponent->BindAxis("LookUp", this, &APlayerCharacter::LookUp);
 
 	PlayerInputComponent->BindAxis("LookRight", this, &APlayerCharacter::LookRight);
+
+	PlayerInputComponent->BindAction("Interact", IE_Pressed, this, &APlayerCharacter::Interact);
 
 }
 void APlayerCharacter::Forward(float input)
