@@ -9,6 +9,7 @@
 #include "Blueprint/UserWidget.h"
 #include "Kismet/KismetSystemLibrary.h"
 #include "interactable.h"
+#include "MyUserWidget.h"
 
 // Sets default values
 APlayerCharacter::APlayerCharacter()
@@ -73,6 +74,13 @@ void APlayerCharacter::Interact()
 		return;
 	}
 	UE_LOG(LogTemp, Warning, TEXT("Interacting"));
+	interactable->GenerateImage();
+	if (interactable->hasImage == false) {
+		
+		//myWidget->texExample = interactable->GenerateImage();
+		interactable->hasImage = true;
+		UE_LOG(LogTemp, Warning, TEXT("hello"));
+	}
 	interactable->Destroy();
 }
 

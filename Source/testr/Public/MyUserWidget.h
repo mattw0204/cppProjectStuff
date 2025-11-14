@@ -14,4 +14,7 @@ class TESTR_API UMyUserWidget : public UUserWidget
 {
 	GENERATED_BODY()
 	
+public:
+	UPROPERTY()
+	UTexture* texExample;
 };
