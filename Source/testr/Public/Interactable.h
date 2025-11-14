@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "Item.h"
 #include "Interactable.generated.h"
 
 UCLASS()
@@ -16,6 +17,8 @@ public:
 	AInteractable();
 	UPROPERTY(VisibleAnywhere)
 	UStaticMeshComponent* mesh;
+	UPROPERTY(EditAnywhere)
+	FItem item;
 
 protected:
 	// Called when the game starts or when spawned

@@ -13,5 +13,9 @@ UCLASS()
 class TESTR_API UMyUserWidget : public UUserWidget
 {
 	GENERATED_BODY()
-	
+public:
+
+	UPROPERTY(BlueprintReadOnly)
+	TSoftObjectPtr<UTexture2D> tex;
+
 };

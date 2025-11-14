@@ -10,6 +10,9 @@ AInteractable::AInteractable()
 	PrimaryActorTick.bCanEverTick = true;
 	mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("mesh"));
 	mesh->SetSimulatePhysics(true);
+
+	item.mesh = mesh->GetStaticMesh();
+	item.name = FText::FromString(mesh->GetName());
 }
 
 // Called when the game starts or when spawned
