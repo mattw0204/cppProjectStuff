@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "Components/SceneCaptureComponent2D.h"
+#include "Item.h"
 #include "Interactable.generated.h"
 
 UCLASS()
@@ -29,6 +30,9 @@ public:
 	void GenerateImage();
 	UFUNCTION()
 	void CreateTexture();
+	UPROPERTY(EditAnywhere)
+	FItem item;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

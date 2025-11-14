@@ -7,6 +7,7 @@
 #include "Camera/CameraComponent.h"
 #include "MyUserWidget.h"
 #include "Interactable.h"
+#include "Item.h"
 #include "PlayerCharacter.generated.h"
 
 UCLASS()
@@ -33,6 +34,10 @@ public:
 	UClass* interactableRef;
 	UPROPERTY()
 	AInteractable* interactable;
+
+	UPROPERTY()
+	TArray<FItem> inventory;
+
 	UFUNCTION()
 	void Raycast();
 	UFUNCTION()
