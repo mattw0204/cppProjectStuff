@@ -50,7 +50,8 @@ void AInteractable::GenerateImage()
 	FTimerDelegate timerDelegate;
 	timerDelegate.BindUFunction(this, FName("CreateTexture"));
 	GetWorldTimerManager().SetTimerForNextTick(timerDelegate);
-	
+	image = rt->ConstructTexture2D(this, mesh->GetStaticMesh()->GetName(), EObjectFlags::RF_NoFlags, CTF_Default);
+
 	
 }
 

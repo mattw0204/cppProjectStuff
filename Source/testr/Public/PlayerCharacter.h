@@ -22,10 +22,8 @@ public:
 	UCameraComponent* camera;
 	UPROPERTY()
 	UCharacterMovementComponent* movementComponent;
-	UPROPERTY(EditAnywhere)
-	UMyUserWidget* myWidget;
 	UPROPERTY()
-	TSubclassOf<UMyUserWidget> widgetRef;
+	UUserWidget* myWidget;
 	UPROPERTY()
 	bool shouldRaycast;
 	UPROPERTY()
@@ -34,6 +32,8 @@ public:
 	UClass* interactableRef;
 	UPROPERTY()
 	AInteractable* interactable;
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<class UMyUserWidget> widgetReference;
 
 	UPROPERTY()
 	TArray<FItem> inventory;
@@ -50,6 +50,8 @@ public:
 	void LookRight(float input);
 	UFUNCTION()
 	void Interact();
+
+	void UpdateInventory(UTexture2D* image);
 
 protected:
 	// Called when the game starts or when spawned

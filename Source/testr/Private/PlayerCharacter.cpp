@@ -32,9 +32,9 @@ APlayerCharacter::APlayerCharacter()
 void APlayerCharacter::BeginPlay()
 {
 	Super::BeginPlay();
-	if (myWidget != nullptr)
+	if (widgetReference != nullptr)
 	{
-		//myWidget = (UMyUserWidget*)CreateWidget(GetWorld(), widgetRef);
+		myWidget = CreateWidget(GetWorld(),widgetReference);
 		myWidget->AddToViewport();
 	}
 }
@@ -77,17 +77,22 @@ void APlayerCharacter::Interact()
 
 	inventory.Add(interactable->item);
 
-	myWidget->tex = inventory[0].image;
 
 
-	interactable->GenerateImage();
+	
 	if (interactable->hasImage == false) {
+		interactable->GenerateImage();
 		
-		//myWidget->texExample = interactable->GenerateImage();
+		Cast<UMyUserWidget>(myWidget)->generatedImage = interactable->image;
 		interactable->hasImage = true;
 		UE_LOG(LogTemp, Warning, TEXT("hello"));
 	}
 	interactable->Destroy();
+}
+void APlayerCharacter::UpdateInventory(UTexture2D* image)
+{
+	
+
 }
 
 // Called to bind functionality to input
