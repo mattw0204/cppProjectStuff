@@ -17,5 +17,5 @@ public:
 	EItemTypes itemType;
 	UStaticMesh* mesh;
 	UPROPERTY(EditAnywhere)
-	TSoftObjectPtr<UTexture2D> image;
+	UTexture2D* image;
 };

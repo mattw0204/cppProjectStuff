@@ -16,6 +16,6 @@ class TESTR_API UMyUserWidget : public UUserWidget
 public:
 
 	UPROPERTY(BlueprintReadOnly)
-	TSoftObjectPtr<UTexture2D> tex;
+	UTexture2D* tex;
 
 };

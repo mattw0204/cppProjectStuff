@@ -3,12 +3,20 @@
 
 #include "PlayerCharacter.h"
 #include "Camera/CameraComponent.h"
-
+#include "MyUserWidget.h"
 #include "Components/CapsuleComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Blueprint/UserWidget.h"
 #include "Kismet/KismetSystemLibrary.h"
-#include "interactable.h"
+#include "Interactable.h"
+#include "MyPlayerController.h"
+#include "Runtime/UMG/Public/UMG.h"
+#include "Runtime/UMG/Public/UMGStyle.h"
+#include "Runtime/UMG/Public/Slate/SObjectWidget.h"
+#include "Runtime/UMG/Public/IUMGModule.h"
+#include "Runtime/UMG/Public/Blueprint/UserWidget.h"
+#include "UObject/ConstructorHelpers.h"
+
 
 // Sets default values
 APlayerCharacter::APlayerCharacter()
@@ -23,18 +31,26 @@ APlayerCharacter::APlayerCharacter()
 	camera->bUsePawnControlRotation = true;
 	movementComponent = GetCharacterMovement();
 	movementComponent->MaxWalkSpeed = 300;
-
+	WidgetPointer = nullptr;
+	//widgetRef = (CreateDefaultSubobject<TSubclassOf<UMyUserWidget>>(TEXT("widget")));
+	static ConstructorHelpers::FClassFinder<UMyUserWidget> PlayerWidgetClassFinder(TEXT("/Game/WB_HUD.WB_HUD_C"));
+	widgetRef = PlayerWidgetClassFinder.Class;
 	interactableRef = AInteractable::StaticClass();
+
+	inventory.Init({}, 9);
 }
 
 // Called when the game starts or when spawned
 void APlayerCharacter::BeginPlay()
 {
 	Super::BeginPlay();
-	if (myWidget != nullptr)
+	if (IsLocallyControlled() && widgetRef)
 	{
-		//myWidget = (UMyUserWidget*)CreateWidget(GetWorld(), widgetRef);
-		myWidget->AddToViewport();
+		myController = (AMyPlayerController*)UGameplayStatics::GetPlayerController(GetWorld(), 0);
+		check(myController);
+		WidgetPointer = CreateWidget<UMyUserWidget>(myController, widgetRef);
+		check(WidgetPointer);
+		WidgetPointer->AddToPlayerScreen();
 	}
 }
 
@@ -74,12 +90,14 @@ void APlayerCharacter::Interact()
 	}
 	UE_LOG(LogTemp, Warning, TEXT("Interacting"));
 
-	inventory.Add(interactable->item);
+	inventory[0] = (interactable->item);
 
-	myWidget->tex = inventory[0].image;
+	if (inventory[0].image != nullptr) {
+		WidgetPointer->tex = inventory[0].image;
+		UE_LOG(LogTemp, Warning, TEXT("Hello"));
+	}
 
-
-	interactable->Destroy();
+	//interactable->Destroy();
 }
 
 // Called to bind functionality to input

@@ -8,6 +8,7 @@
 #include "MyUserWidget.h"
 #include "Interactable.h"
 #include "Item.h"
+#include "MyPlayerController.h"
 #include "PlayerCharacter.generated.h"
 
 UCLASS()
@@ -21,11 +22,13 @@ public:
 	UPROPERTY()
 	UCameraComponent* camera;
 	UPROPERTY()
+	AMyPlayerController* myController;
+	UPROPERTY()
 	UCharacterMovementComponent* movementComponent;
-	UPROPERTY(EditAnywhere)
-	UMyUserWidget* myWidget;
 	UPROPERTY()
 	TSubclassOf<UMyUserWidget> widgetRef;
+	UPROPERTY()
+	UMyUserWidget* WidgetPointer;
 	UPROPERTY()
 	bool shouldRaycast;
 	UPROPERTY()
