@@ -15,12 +15,7 @@ class TESTR_API UMyUserWidget : public UUserWidget
 {
 	GENERATED_BODY()
 public:
-	UMyUserWidget(const FObjectInitializer& ObjectInitializer);
-
 	UPROPERTY(BlueprintReadOnly)
 	TArray<FItem> item;
-
-	UFUNCTION(BlueprintImplementableEvent)
-	void UpdateImages();
 
 };

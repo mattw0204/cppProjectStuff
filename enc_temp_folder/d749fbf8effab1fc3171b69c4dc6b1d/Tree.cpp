@@ -34,20 +34,20 @@ void ATree::OnConstruction(const FTransform &Transform)
 	{
 	case ETreeType::Conicle:
 	{
-		mesh->SetStaticMesh(Cast<UStaticMesh>(StaticLoadObject(UStaticMesh::StaticClass(), nullptr, TEXT("StaticMesh'/Game/Meshes/tree-conical.tree-conical'"))));
+		mesh->SetStaticMesh(Cast<UStaticMesh>(StaticLoadObject(UStaticMesh::StaticClass(), nullptr, TEXT("StaticMesh'/Game/tree-conical.tree-conical'"))));
 
 		break;
 	}
 	case ETreeType::Branched:
 	{
-		mesh->SetStaticMesh(Cast<UStaticMesh>(StaticLoadObject(UStaticMesh::StaticClass(), nullptr, TEXT("StaticMesh'/Game/Meshes/treebranched.treebranched'"))));
+		mesh->SetStaticMesh(Cast<UStaticMesh>(StaticLoadObject(UStaticMesh::StaticClass(), nullptr, TEXT("StaticMesh'/Game/treebranched.treebranched'"))));
 
 		break;
 	}
 	case ETreeType::Columnar:
 	{
 
-		mesh->SetStaticMesh(Cast<UStaticMesh>(StaticLoadObject(UStaticMesh::StaticClass(), nullptr, TEXT("StaticMesh'/Game/Meshes/treecolumnar.treecolumnar'"))));
+		mesh->SetStaticMesh(Cast<UStaticMesh>(StaticLoadObject(UStaticMesh::StaticClass(), nullptr, TEXT("StaticMesh'/Game/treecolumnar.treecolumnar'"))));
 
 		break;
 	}

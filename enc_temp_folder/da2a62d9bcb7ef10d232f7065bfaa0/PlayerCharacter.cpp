@@ -92,23 +92,13 @@ void APlayerCharacter::Interact()
 	}
 	UE_LOG(LogTemp, Warning, TEXT("Interacting"));
 
-	for (int i = 0; i < inventory.Num(); i++)
-	{
-		if (inventory[i].image == nullptr) {
-			inventory[i] = (interactable->item);
-			break;
-		}
-		
-	}
-
-
-	for (int i = 0; i < inventory.Num(); i++)
+	inventory[0] = (interactable->item);
+	for (int i = 0; i < inventory.Num();)
 	{
 		WidgetPointer->item[i] = inventory[i];
-		
+		i++;
 		//break;
 	}
-	WidgetPointer->UpdateImages();
 	interactable->Destroy();
 
 }

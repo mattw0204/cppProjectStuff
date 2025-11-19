@@ -12,10 +12,14 @@ struct FItem
 {
 	GENERATED_BODY()
 public:
+	UPROPERTY()
 	FText name;
 	UPROPERTY(EditAnywhere)
 	EItemTypes itemType;
+	UPROPERTY()
 	UStaticMesh* mesh;
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere,BlueprintReadOnly)
 	UTexture2D* image;
+
+	
 };
